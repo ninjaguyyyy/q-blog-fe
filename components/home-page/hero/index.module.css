@@ -1,10 +1,6 @@
 .hero {
   text-align: center;
-  background-image: linear-gradient(
-    to bottom,
-    var(--color-grey-900),
-    var(--color-grey-800)
-  );
+  background-image: linear-gradient(to bottom, var(--color-grey-900), var(--color-grey-800));
   padding: var(--size-8) 0;
 }
 
