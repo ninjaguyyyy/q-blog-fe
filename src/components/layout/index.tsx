@@ -1,6 +1,11 @@
+import { ReactNode } from 'react';
 import MainNavigation from './main-navigation';
 
-const Layout: React.FC = (props) => {
+type Props = {
+  children: ReactNode;
+};
+
+const Layout = (props: Props) => {
   return (
     <>
       <MainNavigation />
