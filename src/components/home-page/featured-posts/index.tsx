@@ -9,7 +9,7 @@ type FeaturedPostsProps = {
 const FeaturedPosts = ({ posts }: FeaturedPostsProps) => {
   return (
     <section className={classes.latest}>
-      <h2>Featured Posts</h2>
+      <h2 className="!text-red-500">Featured Posts</h2>
       <PostsGrid posts={posts} />
     </section>
   );
