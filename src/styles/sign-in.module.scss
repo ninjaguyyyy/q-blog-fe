@@ -1,0 +1,25 @@
+@import 'variables';
+
+.sign-in {
+  background: $gray-light-color;
+  height: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+
+  :global(.container) {
+    padding: 60px 50px;
+    background: $white-color;
+    width: 90%;
+  }
+
+  :global(.social) {
+    &:hover {
+      background-color: #eef2ff;
+      color: #000000;
+      transform: translateY(-4px);
+      transition: 0.2s;
+    }
+  }
+}
