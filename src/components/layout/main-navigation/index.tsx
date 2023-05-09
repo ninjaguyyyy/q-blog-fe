@@ -3,6 +3,10 @@ import Logo from './logo';
 import classes from './index.module.css';
 
 const MainNavigation = () => {
+  const handleClickLogin = () => {
+    console.log('click');
+  };
+
   return (
     <header className={classes.header}>
       <Link href="/">
@@ -21,6 +25,10 @@ const MainNavigation = () => {
           </li>
         </ul>
       </nav>
+
+      <div>
+        <Link href="/sign-in">Login</Link>
+      </div>
     </header>
   );
 };
