@@ -1,11 +1,11 @@
+import { Button } from 'antd';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import Logo from './logo';
 import classes from './index.module.css';
+import Logo from './logo';
 
 const MainNavigation = () => {
-  const handleClickLogin = () => {
-    console.log('click');
-  };
+  const { data: session } = useSession();
 
   return (
     <header className={classes.header}>
@@ -26,9 +26,7 @@ const MainNavigation = () => {
         </ul>
       </nav>
 
-      <div>
-        <Link href="/sign-in">Login</Link>
-      </div>
+      <div>{session ? <Button onClick={() => signOut()}>Logout</Button> : <Link href="/sign-in">Login</Link>}</div>
     </header>
   );
 };

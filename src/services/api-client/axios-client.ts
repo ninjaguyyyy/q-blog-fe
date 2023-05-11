@@ -1,6 +1,5 @@
 import axios from 'axios';
 import queryString from 'query-string';
-import { getAccessToken, removeAccessToken } from 'utils/token';
 
 const axiosClient = axios.create({
   baseURL: 'http://localhost:5000',
@@ -11,10 +10,11 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(function (config) {
-  const token = getAccessToken();
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  // const token = getAccessToken();
+
+  // if (token) {
+  //   config.headers.Authorization = `Bearer ${token}`;
+  // }
   return config;
 });
 
@@ -26,13 +26,7 @@ axiosClient.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log('🚀 ~ file: axios-client.ts:29 ~ error:', error);
-    // const { code, message } = error.response.data;
-    // if (code === 401) {
-    //   console.log(message);
-    //   removeAccessToken();
-    // }
-    // throw error;
+    throw error;
   }
 );
 
