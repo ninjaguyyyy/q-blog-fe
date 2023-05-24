@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import FeaturedPosts from '../components/home-page/featured-posts';
-import Hero from '../components/home-page/hero';
 
 const DUMMY_POSTS = [
   {
@@ -40,7 +39,6 @@ const DUMMY_POSTS = [
 const Home: NextPage = () => {
   return (
     <>
-      <Hero />
       <FeaturedPosts posts={DUMMY_POSTS} />
     </>
   );

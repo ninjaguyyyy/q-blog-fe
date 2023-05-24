@@ -1,7 +1,11 @@
 import classes from './logo.module.css';
 
 const Logo = () => {
-  return <div className={classes.logo}>Tieu Long Nu Blog</div>;
+  return (
+    <a href="" className={classes.logo}>
+      LOGO
+    </a>
+  );
 };
 
 export default Logo;

@@ -2,6 +2,7 @@
   width: 90%;
   max-width: 80rem;
   margin: var(--size-8) auto;
+  padding-top: 100px;
 }
 
 .latest h2 {
