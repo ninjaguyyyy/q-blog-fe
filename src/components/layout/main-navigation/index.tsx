@@ -1,87 +1,75 @@
 import { BellOutlined, SearchOutlined } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import React, { useState } from 'react';
+import { Button, Menu, Form, Input } from 'antd';
 import { MdOutlineLightMode } from 'react-icons/md';
-import { Button } from 'antd';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import Logo from './logo';
 import classes from './index.module.scss';
-import { useState } from 'react';
+
+type MenuItem = Required<MenuProps>['items'][number];
 
 const MainNavigation = () => {
   const { data: session } = useSession();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isItem1DropdownOpen, setIsItem1DropdownOpen] = useState(false);
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  const [form] = Form.useForm();
+  const [current, setCurrent] = useState('1');
+
+
+  const suffix = (
+    <SearchOutlined
+      style={{
+        fontSize: 30,
+        color: '#1677ff',
+      }}
+    />
+  );
+
+  const onClick = (e: any) => {
+    setCurrent(e.key);
+    console.log('aa', e);
   };
 
-  const toggleItem1Dropdown = () => {
-    setIsItem1DropdownOpen(!isItem1DropdownOpen);
-  };
-  const handleListIconMouseEnter = () => {
-    setIsItem1DropdownOpen(true);
-  };
+
+  function getItem(
+    label: React.ReactNode,
+    key?: React.Key | null,
+    children?: MenuItem[],
+    theme?: 'light' | 'dark'
+  ): MenuItem {
+    return {
+      key,
+      children,
+      label,
+      theme,
+    } as MenuItem;
+  }
+
+
+
+
+  const items: MenuItem[] = [
+    getItem('Home', '1', [
+      getItem('Option 1', '2', [getItem('Discover')]),
+      getItem('Option 2', '3'),
+      getItem('Option 3', '4'),
+    ]),
+    getItem('Discover'),
+    getItem('How it word')
+  ];
 
   return (
     <header className={classes.header}>
-      <a className={classes.logo}>
-        <Logo />
-      </a>
-      <button className={classes['btt-search']}>
-        <form className={classes['search-form']}>
-          <input placeholder="Search items" />
-          <span className="pt-5">
-            <SearchOutlined className="text-[30px]" />
-          </span>
-        </form>
-      </button>
-      <div className="mx-15">
-        <div className={classes.dropdown} onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
-          <a className={classes['btt-home']}>Home</a>
-          {isDropdownOpen && (
-            <div className={classes.dropdownContent}>
-              <ul className={classes.dropdownContentChild}>
-                <li
-                  onMouseEnter={toggleItem1Dropdown}
-                  onMouseLeave={toggleItem1Dropdown}
-                  className={isItem1DropdownOpen ? classes.active : ''}
-                >
-                  <a href="#">Item 1</a>
-                  {isItem1DropdownOpen && (
-                    <div className={classes['list-item']} onMouseEnter={handleListIconMouseEnter}>
-                      <ul className={classes['list-item-child']}>
-                        <li>
-                          <a href="#">Icon 1</a>
-                        </li>
-                        <li>
-                          <a href="#">Icon 2</a>
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                </li>
-                <li>
-                  <a href="#">Item 2</a>
-                </li>
-                <li>
-                  <a href="#">Item 3</a>
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
-        <div className={classes.dropdown}>
-          <a className={classes['btt-home']}>Discover</a>
-          <div className={classes.dropdownContent}></div>
-        </div>
-        <a className={classes['btt-home']}>How it works</a>
-        <span className="border-r-2 mx-5"></span>
+      <a>Logo</a>
+      <Form form={form} className="flex flex-row" style={{ padding: 50 }}>
+        <Input placeholder="Search items" suffix={suffix} style={{ borderRadius: 40, width: 300, height: 42 }} />
+      </Form>
+      <div>
+        <Menu items={items} mode="horizontal" onClick={onClick} selectedKeys={[current]}/>
       </div>
-      <MdOutlineLightMode className="text-[30px] mx-5 hover:bg-[#edeef0] cursor-pointer" />
+      <MdOutlineLightMode className="text-[30px] hover:bg-[#edeef0] cursor-pointer" />
       <BellOutlined className="text-[30px] mx-5 hover:bg-[#edeef0] cursor-pointer" />
       <button className={classes['custom-button']}>Create</button>
       <div>{session ? <Button onClick={() => signOut()}>Logout</Button> : <Link href="/sign-in">Login</Link>}</div>
-      <img />
     </header>
   );
 };
