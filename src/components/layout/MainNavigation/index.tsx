@@ -1,11 +1,13 @@
-import { BellOutlined, SearchOutlined } from '@ant-design/icons';
+import { BellOutlined, SearchOutlined, MenuOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import React, { useState } from 'react';
 import { Button, Menu, Form, Input } from 'antd';
 import { MdOutlineLightMode } from 'react-icons/md';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import classes from './index.module.scss';
+import styles from './index.module.scss';
+import MobileMenuDrawer from 'components/molecules/MobileMenuDrawer';
+import { HiOutlineBell } from 'react-icons/hi';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -13,7 +15,6 @@ const MainNavigation = () => {
   const { data: session } = useSession();
   const [form] = Form.useForm();
   const [current, setCurrent] = useState('1');
-
 
   const suffix = (
     <SearchOutlined
@@ -29,7 +30,6 @@ const MainNavigation = () => {
     console.log('aa', e);
   };
 
-
   function getItem(
     label: React.ReactNode,
     key?: React.Key | null,
@@ -44,9 +44,6 @@ const MainNavigation = () => {
     } as MenuItem;
   }
 
-
-
-
   const items: MenuItem[] = [
     getItem('Home', '1', [
       getItem('Option 1', '2', [getItem('Discover')]),
@@ -54,22 +51,29 @@ const MainNavigation = () => {
       getItem('Option 3', '4'),
     ]),
     getItem('Discover'),
-    getItem('How it word')
+    getItem('How it word'),
   ];
 
   return (
-    <header className={classes.header}>
+    <header className={styles.header}>
       <a>Logo</a>
-      <Form form={form} className="flex flex-row" style={{ padding: 50 }}>
+      <Form form={form} className="flex flex-row xs:hidden" style={{ padding: 50 }}>
         <Input placeholder="Search items" suffix={suffix} style={{ borderRadius: 40, width: 300, height: 42 }} />
       </Form>
-      <div>
-        <Menu items={items} mode="horizontal" onClick={onClick} selectedKeys={[current]}/>
+      <div className="xs:hidden">
+        <Menu items={items} mode="horizontal" onClick={onClick} selectedKeys={[current]} />
       </div>
-      <MdOutlineLightMode className="text-[30px] hover:bg-[#edeef0] cursor-pointer" />
-      <BellOutlined className="text-[30px] mx-5 hover:bg-[#edeef0] cursor-pointer" />
-      <button className={classes['custom-button']}>Create</button>
-      <div>{session ? <Button onClick={() => signOut()}>Logout</Button> : <Link href="/sign-in">Login</Link>}</div>
+
+      <div className="flex gap-4 items-center">
+        <MdOutlineLightMode className="text-[30px] hover:bg-[#edeef0] cursor-pointer xs:hidden" />
+
+        <HiOutlineBell className="text-[25px] hover:bg-[#edeef0] cursor-pointer" />
+
+        {/* Buttons */}
+        <div>{session ? <Button onClick={() => signOut()}>Logout</Button> : <Link href="/sign-in">Login</Link>}</div>
+
+        <MobileMenuDrawer />
+      </div>
     </header>
   );
 };

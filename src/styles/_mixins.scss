@@ -1,0 +1,5 @@
+@mixin media-xs() {
+  @media (max-width: 766px) {
+    @content;
+  }
+}

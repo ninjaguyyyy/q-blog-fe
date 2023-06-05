@@ -1,29 +1,27 @@
-$header-height: 6rem;
-$color-grey-900: var(--color-grey-900);
-$color-white: white;
-$color-black: black;
-$color-bg-hover: #edeef0;
-$color-bg-dropdown: #f9f9f9;
-$color-button-bg: #4f46e5;
-$border-radius: 10px;
-$transition-duration: 0.3s;
+@import 'variables';
+@import 'mixins';
 
 .header {
   width: 100%;
-  height: $header-height;
+  height: 6rem;
   background-color: $color-grey-900;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 10%;
 
+  @include media-xs() {
+    height: auto;
+    padding: 1.25rem 1rem;
+  }
+
   .btt-search {
     width: 320px;
     height: 45px;
     border-radius: 20px;
-    border: 1px solid $color-black;
+    border: 1px solid $black-color;
     .search-form {
-      display: flex;  
+      display: flex;
       flex-direction: row;
       text-align: center;
       margin-left: 10px;
@@ -37,17 +35,6 @@ $transition-duration: 0.3s;
       text-align: center;
       padding-top: 2px;
     }
-  }
- 
-  .custom-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10%;
-    height: 2.5rem;
-    border-radius: $border-radius;
-    background-color: $color-button-bg;
-    color: $color-white;
   }
 
   @media (min-width: 768px) {

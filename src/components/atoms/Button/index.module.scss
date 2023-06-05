@@ -1,0 +1,12 @@
+@import 'variables';
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 2.5rem;
+  border-radius: $border-radius;
+  background-color: $color-button-bg;
+  color: $white-color;
+}
