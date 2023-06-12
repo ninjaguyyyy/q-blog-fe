@@ -1,45 +1,27 @@
 import type { NextPage } from 'next';
+import { useEffect, useState } from 'react';
 import FeaturedPosts from '../components/home-page/featured-posts';
-
-const DUMMY_POSTS = [
-  {
-    slug: 'getting-started-with-nextjs',
-    title: 'Getting Started with NextJS',
-    image: 'getting-started-nextjs.png',
-    excerpt:
-      'NextJS is a the React framework for production - it makes building fullstack React apps and sites a breeze and ships with built-in SSR.',
-    date: '2022-02-10',
-  },
-  {
-    slug: 'getting-started-with-nextjs2',
-    title: 'Getting Started with NextJS',
-    image: 'getting-started-nextjs.png',
-    excerpt:
-      'NextJS is a the React framework for production - it makes building fullstack React apps and sites a breeze and ships with built-in SSR.',
-    date: '2022-02-10',
-  },
-  {
-    slug: 'getting-started-with-nextjs3',
-    title: 'Getting Started with NextJS',
-    image: 'getting-started-nextjs.png',
-    excerpt:
-      'NextJS is a the React framework for production - it makes building fullstack React apps and sites a breeze and ships with built-in SSR.',
-    date: '2022-02-10',
-  },
-  {
-    slug: 'getting-started-with-nextjs4',
-    title: 'Getting Started with NextJS',
-    image: 'getting-started-nextjs.png',
-    excerpt:
-      'NextJS is a the React framework for production - it makes building fullstack React apps and sites a breeze and ships with built-in SSR.',
-    date: '2022-02-10',
-  },
-];
+import getBlogs from './api/list-blog/api/getBlogs';
 
 const Home: NextPage = () => {
+  const [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getBlogs();
+        setBlogs(data);
+        console.log(data);
+      } catch (error) {
+        console.log('error fetching blog', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
-      <FeaturedPosts posts={DUMMY_POSTS} />
+      <FeaturedPosts posts={blogs} />
     </>
   );
 };

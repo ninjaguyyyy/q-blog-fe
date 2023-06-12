@@ -1,6 +1,6 @@
 import React from 'react';
 import PostItem from './post-item';
-import classes from './index.module.css';
+import classes from './index.module.scss';
 import { Post } from '../../models/post';
 
 type PostsGridProps = {
