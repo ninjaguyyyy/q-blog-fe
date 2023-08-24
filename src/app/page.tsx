@@ -1,5 +1,5 @@
 import TopPageBanner from 'app/components/TopPageBanner';
-import SubscribeNewsletter from 'components/SubscribeNewsletter';
+import SubscribeNewsletter from 'app/components/SubscribeNewsletter';
 
 export default function Home() {
   return (

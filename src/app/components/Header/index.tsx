@@ -3,7 +3,7 @@ import HeaderMenu from 'app/components/Header/components/HeaderMenu';
 import { MdOutlineLightMode } from 'react-icons/md';
 import { HiOutlineBell } from 'react-icons/hi';
 import { FaSearch } from 'react-icons/fa';
-import InputField from 'components/InputField';
+import InputField from 'app/components/InputField';
 import Image from 'next/image';
 import Logo from 'statics/images/logo.svg';
 

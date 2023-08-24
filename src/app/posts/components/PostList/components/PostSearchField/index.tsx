@@ -1,6 +1,6 @@
 'use client';
 
-import InputField from 'components/InputField';
+import InputField from 'app/components/InputField';
 import useCustomRouter from 'libs/hooks/useCustomRouter';
 import { FaSearch } from 'react-icons/fa';
 

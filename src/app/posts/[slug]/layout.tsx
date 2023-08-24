@@ -1,5 +1,5 @@
 import PopularPosts from 'app/posts/[slug]/components/PopularPosts';
-import SubscribeNewsletter from 'components/SubscribeNewsletter';
+import SubscribeNewsletter from 'app/components/SubscribeNewsletter';
 
 export default function PostLayout({
   children,

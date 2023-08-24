@@ -1,8 +1,8 @@
-import PostListToolbar from 'app/posts/components/PostList/components/PostListToolbar';
-import Pagination from 'components/Pagination';
-import PostCard from 'components/PostCard';
-import { Post } from 'models/Post';
 import { Col, Row } from 'antd';
+import Pagination from 'app/components/Pagination';
+import PostCard from 'app/components/PostCard';
+import PostListToolbar from 'app/posts/components/PostList/components/PostListToolbar';
+import { Post } from 'models/Post';
 import { GetPostsParams, getPosts } from 'services/post.service';
 
 type Props = {
@@ -28,6 +28,7 @@ export default async function PostList({ searchParams }: Props) {
           )}
         </Row>
       </div>
+
       <Pagination total={total} />
     </section>
   );

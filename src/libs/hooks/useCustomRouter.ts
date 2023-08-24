@@ -25,7 +25,7 @@ export default function useCustomRouter() {
       page === 1 ? delete query.page : (query.page = page);
     }
 
-    const newQuery = new URLSearchParams(query).toString();
+    const newQuery = new URLSearchParams(query as any).toString();
 
     router.push(`?${newQuery}`);
   };

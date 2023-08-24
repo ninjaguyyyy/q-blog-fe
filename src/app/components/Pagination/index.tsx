@@ -13,7 +13,6 @@ export default function Pagination({ total }: Props) {
   const { query, pushQuery } = useCustomRouter();
 
   const handleChangePage = (page: number) => {
-    console.log('🚀 ~ file: index.tsx:14 ~ handleChangePage ~ page:', page);
     pushQuery({ page });
   };
 
