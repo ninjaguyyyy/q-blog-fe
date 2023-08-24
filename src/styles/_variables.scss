@@ -1,0 +1,27 @@
+/* General */
+$black-color: #11065e;
+$purple-color: #5046e5;
+$gray-color: #f3f4f6;
+
+/* Fonts */
+$primary-font: 'Verdana Primary';
+
+/* Responsive breakpoints */
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+$device-breakpoints: (
+  mobile: 0,
+  tablet: 577px,
+  laptop: 769px,
+  desktop: 1025px,
+  large-desktop: 1201px,
+);
+
+$orientation-landscape: landscape;
+$orientation-portrait: portrait;

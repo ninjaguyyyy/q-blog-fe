@@ -1,0 +1,8 @@
+.pagination {
+  :global {
+    .ant-pagination-next,
+    .ant-pagination-prev {
+      display: none;
+    }
+  }
+}

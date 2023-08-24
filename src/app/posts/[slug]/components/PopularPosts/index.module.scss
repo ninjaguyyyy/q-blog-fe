@@ -1,0 +1,8 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.popular-posts {
+  background: $gray-color;
+  padding: 20px 15px;
+  border-radius: 16px;
+}

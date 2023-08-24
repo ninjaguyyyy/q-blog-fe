@@ -1,0 +1,9 @@
+.post-card {
+  :global {
+    .ant-card-body {
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 16px;
+    }
+  }
+}
