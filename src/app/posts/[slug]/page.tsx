@@ -1,3 +1,4 @@
+import Comments from 'app/posts/[slug]/components/Comments';
 import { getPost } from 'services/post.service';
 
 type Props = {
@@ -15,6 +16,10 @@ export default async function Post({ params }: Props) {
       </h1>
       <hr className="mt-4 mb-12" />
       <p>My Post: {params.slug}</p>
+
+      <hr className="mt-24 mb-8" />
+
+      <Comments />
     </section>
   );
 }

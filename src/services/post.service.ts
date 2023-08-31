@@ -16,26 +16,12 @@ export const getPosts = async ({ search, page, limit }: GetPostsParams) => {
   const url = buildApiUrl(APIs.POSTS, params);
   const res = await fetch(url, { cache: 'no-store' });
 
-  // todo: for demo -> remove after
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(res.json());
-    }, 5000);
-  });
-
   return res.json();
 };
 
 export const getPost = async (slug: string) => {
   const url = buildApiUrl(`${APIs.POST_BY_SLUG}/${slug}`);
   const res = await fetch(url, { cache: 'no-store' });
-
-  // todo: for demo -> remove after
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(res.json());
-    }, 5000);
-  });
 
   return res.json();
 };
