@@ -10,8 +10,8 @@ export default function useCustomRouter() {
   const searchParams = useSearchParams();
   const query: QueryParams = {};
 
-  let search = searchParams.get('search');
-  let page = searchParams.get('page');
+  let search = searchParams?.get('search');
+  let page = searchParams?.get('page');
 
   if (search) query.search = search;
   if (page) query.page = +page;

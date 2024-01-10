@@ -1,14 +1,12 @@
 version: '3'
 services:
   nextjs-app:
-    container_name: nextjs-app
-    image: docker-reg.dipro-tech.com/tokiwagi:${TAG}
+    container_name: next14-app
+    image: nguyenhuuchi3006/q-blog-fe:latest
     build:
       context: ..
       dockerfile: docker/Dockerfile
     env_file: ../.env
     ports:
       - '3000:3000'
-    volumes:
-      - '/data/logs:/app/logs'
     restart: always
