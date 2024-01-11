@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+
+    environment {
+        ENV_TEST = credentials('ENV_TEST')
+
+        // AWS_ACCESS_KEY_ID = credentials('DOCV_AWS_ACCESS_KEY_ID')
+        // AWS_SECRET_ACCESS_KEY = credentials('DOCV_AWS_SECRET_ACCESS_KEY')
+        // AWS_DEFAULT_REGION = 'ap-northeast-1'
+        // DISABLE_BUILD_STEP = credentials('DOCV_DISABLE_BUILD_STEP')
+
+        // SERVER_URL = credentials('DOCV_NEXTJS_SERVER_URL')
+        SERVER_URL = credentials('SERVER_URL')
+        SERVER_SSH_KEY_FILE = credentials('SERVER_SSH_KEY_FILE')
+        SERVER_USER = credentials('SERVER_USER')
+        DOCKER_HUB_USERNAME = credentials('DOCKER_HUB_USERNAME')
+        DOCKER_HUB_PASSWORD = credentials('DOCKER_HUB_PASSWORD')
+    }
+
+    stages {
+        // Select environment
+        // -- Production Environment
+        stage('Use Production Env') {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    env.ENV = 'prod'
+                    env.ENV_FILE = "${env.ENV_TEST}"
+                }
+
+                echo "BUILD_ENV: prod"
+            }
+        }
+        // Build
+        stage('Build') {
+            steps {
+                sh 'chmod +x ./jenkins/scripts/build.sh && ./jenkins/scripts/build.sh'
+                // sh 'cd ./docker && docker --version && docker ps'
+            }
+        }
+        // Deploy
+        stage('Deploy') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sh 'chmod +x ./jenkins/scripts/deploy.sh && ./jenkins/scripts/deploy.sh'
+            }
+        }
+    }
+}
