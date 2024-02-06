@@ -2,6 +2,8 @@
 $black-color: #11065e;
 $purple-color: #5046e5;
 $gray-color: #f3f4f6;
+$primary-color: #4f46e5;
+$primary-color-hover: #261ce2;
 
 /* Fonts */
 $primary-font: 'Verdana Primary';
@@ -25,3 +27,8 @@ $device-breakpoints: (
 
 $orientation-landscape: landscape;
 $orientation-portrait: portrait;
+
+:export {
+  primaryColor: $primary-color;
+  secondaryColor: $black-color;
+}
